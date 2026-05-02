@@ -29,6 +29,180 @@ function cn(...inputs: ClassValue[]) {
 
 const DURATION_OPTIONS = [15, 30, 45, 60, 90];
 
+// Simulation Component
+function ChemicalSimulation({ type }: { type: Question['simulationType'] }) {
+  if (!type) return null;
+
+  return (
+    <div className="w-full aspect-video bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center overflow-hidden relative">
+      <div className="absolute top-4 left-4 flex items-center gap-2">
+        <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+        <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400">Simulation active</span>
+      </div>
+
+      {type === 'litmus-bleach' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-24 h-48 bg-white/50 border-2 border-gray-200 rounded-b-full p-2 flex items-center justify-center">
+             <motion.div 
+               initial={{ backgroundColor: '#60a5fa' }} // Blue
+               animate={{ 
+                 backgroundColor: ['#60a5fa', '#f87171', '#ffffff'],
+               }}
+               transition={{ duration: 4, repeat: Infinity, times: [0, 0.4, 0.8] }}
+               className="w-8 h-32 rounded-sm shadow-sm"
+             />
+          </div>
+          <p className="text-xs font-medium text-gray-500">Mất màu quỳ tím ẩm</p>
+        </div>
+      )}
+
+      {type === 'precipitate-cloudy' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-16 h-48 bg-white/20 border-2 border-gray-200 rounded-b-full overflow-hidden">
+             <motion.div 
+               initial={{ opacity: 0, scale: 0.8 }}
+               animate={{ opacity: [0, 0.3, 0.8, 1], scale: 1 }}
+               transition={{ duration: 3, repeat: Infinity }}
+               className="absolute inset-0 bg-[#FFFBEB]"
+             />
+             <div className="absolute inset-x-0 bottom-0 h-4/5 bg-blue-100/30" />
+          </div>
+          <p className="text-xs font-medium text-gray-500">Dung dịch trở nên đục</p>
+        </div>
+      )}
+
+      {type === 'starch-iodine' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-32 h-32 bg-[#FDE68A] rounded-3xl relative overflow-hidden flex items-center justify-center">
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1.2, 1], opacity: 1 }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-16 h-16 bg-[#1E3A8A] rounded-full blur-xl"
+            />
+            <motion.div 
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: [0, 1], opacity: 0.8 }}
+              transition={{ duration: 2, delay: 0.5, repeat: Infinity }}
+              className="absolute top-1/4 right-1/4 w-12 h-12 bg-[#1E3A8A] rounded-full blur-lg"
+            />
+          </div>
+          <p className="text-xs font-medium text-gray-500">Màu xanh tím trên khoai lang</p>
+        </div>
+      )}
+
+      {type === 'litmus-red' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-24 h-48 bg-white/50 border-2 border-gray-200 rounded-b-full p-2 flex items-center justify-center">
+             <motion.div 
+               initial={{ backgroundColor: '#60a5fa' }} // Blue
+               animate={{ backgroundColor: '#f87171' }} // Red
+               transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
+               className="w-8 h-32 rounded-sm shadow-sm"
+             />
+          </div>
+          <p className="text-xs font-medium text-gray-500">Quỳ tím hóa đỏ</p>
+        </div>
+      )}
+
+      {type === 'gas-evolution' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-16 h-48 bg-white/20 border-2 border-gray-200 rounded-b-full overflow-hidden">
+             <div className="absolute inset-x-0 bottom-0 h-4/5 bg-blue-100/30" />
+             {[...Array(8)].map((_, i) => (
+               <motion.div
+                 key={i}
+                 initial={{ y: 150, x: 20 + Math.random() * 20, opacity: 0, scale: 0.5 }}
+                 animate={{ y: [150, 0], opacity: [0, 1, 0], scale: [0.5, 1.2] }}
+                 transition={{ duration: 1.5 + Math.random(), repeat: Infinity, delay: i * 0.2 }}
+                 className="absolute w-2 h-2 bg-white rounded-full border border-blue-200"
+               />
+             ))}
+          </div>
+          <p className="text-xs font-medium text-gray-500">Sủi bọt khí</p>
+        </div>
+      )}
+
+      {type === 'solution-color-change' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-16 h-48 bg-white/20 border-2 border-gray-200 rounded-b-full overflow-hidden">
+             <motion.div 
+               initial={{ backgroundColor: 'rgba(219, 234, 254, 0.3)' }}
+               animate={{ backgroundColor: '#3b82f6' }}
+               transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
+               className="absolute inset-x-0 bottom-0 h-4/5"
+             />
+             {[...Array(5)].map((_, i) => (
+               <motion.div
+                 key={i}
+                 initial={{ y: 150, x: 20 + Math.random() * 20, opacity: 0 }}
+                 animate={{ y: [150, 0], opacity: [0, 1, 0] }}
+                 transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+                 className="absolute w-2 h-2 bg-white/50 rounded-full"
+               />
+             ))}
+          </div>
+          <p className="text-xs font-medium text-gray-500">Dung dịch chuyển màu xanh</p>
+        </div>
+      )}
+
+      {type === 'smoke-evolution' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-64 h-32 flex justify-between items-center px-12">
+            <div className="w-12 h-4 bg-gray-300 rounded-full" />
+            <div className="w-12 h-4 bg-gray-300 rounded-full" />
+            
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ 
+                  scale: 0.5, 
+                  opacity: 0, 
+                  x: i % 2 === 0 ? -40 : 40,
+                  y: 0 
+                }}
+                animate={{ 
+                  scale: [0.5, 2, 4], 
+                  opacity: [0, 0.6, 0], 
+                  x: 0,
+                  y: [0, -40, -80] 
+                }}
+                transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
+                className="absolute left-1/2 top-1/2 w-8 h-8 bg-white rounded-full blur-md"
+              />
+            ))}
+          </div>
+          <p className="text-xs font-medium text-gray-500">Khói trắng (NH4Cl)</p>
+        </div>
+      )}
+
+      {type === 'precipitate-yellow' && (
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-16 h-48 bg-white/20 border-2 border-gray-200 rounded-b-full overflow-hidden">
+             <div className="absolute inset-x-0 bottom-0 h-4/5 bg-blue-50/20" />
+             <motion.div 
+               initial={{ height: 0 }}
+               animate={{ height: ['0%', '20%'] }}
+               transition={{ duration: 4, repeat: Infinity }}
+               className="absolute bottom-0 inset-x-0 bg-yellow-400 opacity-80"
+             />
+             {[...Array(10)].map((_, i) => (
+               <motion.div
+                 key={i}
+                 initial={{ y: 20, x: 10 + Math.random() * 30, opacity: 0 }}
+                 animate={{ y: [20, 160], opacity: [0, 1, 0] }}
+                 transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+                 className="absolute w-1.5 h-1.5 bg-yellow-400 rounded-full"
+               />
+             ))}
+          </div>
+          <p className="text-xs font-medium text-gray-500">Kết tủa vàng</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const [currentStep, setCurrentStep] = useState<'landing' | 'quiz' | 'result'>('landing');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -111,7 +285,7 @@ export default function App() {
                   Ôn tập <br/> Tổng hợp
                 </h1>
                 <p className="text-xl text-gray-500 font-light max-w-xl leading-relaxed">
-                  Bấm bắt đầu để làm bài kiểm tra 40 câu hỏi. Tùy chỉnh thời gian làm bài bên dưới.
+                  Bấm bắt đầu để làm bài kiểm tra {QUESTIONS.length} câu hỏi. Tùy chỉnh thời gian làm bài bên dưới.
                 </p>
               </div>
 
@@ -148,7 +322,7 @@ export default function App() {
                     <BookOpen size={18} />
                     <span className="font-medium">Cấu trúc</span>
                   </div>
-                  <p className="text-gray-600">40 câu hỏi trắc nghiệm kiến thức môn Hóa học 10.</p>
+                  <p className="text-gray-600">{QUESTIONS.length} câu hỏi trắc nghiệm kiến thức môn Hóa học 10.</p>
                 </div>
               </div>
 
@@ -265,6 +439,23 @@ export default function App() {
                       {currentQuestion.text}
                     </ReactMarkdown>
                   </div>
+
+                  {currentQuestion.simulationType ? (
+                    <ChemicalSimulation type={currentQuestion.simulationType} />
+                  ) : currentQuestion.image && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="rounded-2xl overflow-hidden border border-gray-100 bg-white"
+                    >
+                      <img 
+                        src={currentQuestion.image} 
+                        alt="Question illustration" 
+                        className="w-full h-auto object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                    </motion.div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 gap-3">
@@ -442,6 +633,21 @@ export default function App() {
                               {q.text}
                             </ReactMarkdown>
                           </div>
+
+                          {q.simulationType ? (
+                            <div className="max-w-md">
+                              <ChemicalSimulation type={q.simulationType} />
+                            </div>
+                          ) : q.image && (
+                            <div className="rounded-xl overflow-hidden border border-gray-100 max-w-md">
+                              <img 
+                                src={q.image} 
+                                alt="Question illustration" 
+                                className="w-full h-auto"
+                                referrerPolicy="no-referrer"
+                              />
+                            </div>
+                          )}
                           
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div className={cn(

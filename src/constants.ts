@@ -10,6 +10,8 @@ export interface Question {
   options: string[];
   correctAnswer: number; // 0 for A, 1 for B, 2 for C, 3 for D
   explanation: string;
+  image?: string;
+  simulationType?: 'litmus-bleach' | 'precipitate-cloudy' | 'starch-iodine' | 'litmus-red' | 'gas-evolution' | 'solution-color-change' | 'smoke-evolution' | 'precipitate-yellow';
 }
 
 export const QUESTIONS: Question[] = [
@@ -167,7 +169,7 @@ export const QUESTIONS: Question[] = [
   },
   {
     id: 19,
-    section: "PHẦN III. CHỦ ĐỀ: NHÓM HALOGEN",
+    section: "PHẦ_N III. CHỦ ĐỀ: NHÓM HALOGEN",
     text: "Đặc điểm nào sau đây đúng khi nói về xu hướng biến đổi của các halogen từ F đến I?",
     options: ["Tính oxi hóa tăng dần.", "Bán kính nguyên tử giảm dần.", "Nhiệt độ sôi và nhiệt độ nóng chảy tăng dần.", "Độ âm điện tăng dần."],
     correctAnswer: 2,
@@ -385,5 +387,145 @@ export const QUESTIONS: Question[] = [
     options: ["24,79 lít.", "37,185 lít.", "61,975 lít.", "74,37 lít."],
     correctAnswer: 2,
     explanation: "$2KMnO_4 + 16HCl \\rightarrow 2KCl + 2MnCl_2 + 5Cl_2 + 8H_2O$. nCl2 = $5/2 \\times nKMnO_4 = 2,5$ mol. V = $2,5 \\times 24,79 = 61,975$ L."
+  },
+  {
+    id: 41,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Dẫn khí Chlorine vào ống nghiệm chứa mẩu giấy quỳ tím ẩm. Hiện tượng quan sát được là",
+    options: [
+      "Quỳ tím chuyển sang màu đỏ rồi mất màu ngay.",
+      "Quỳ tím chỉ chuyển sang màu xanh.",
+      "Quỳ tím chuyển sang màu đỏ và giữ nguyên màu đó.",
+      "Không có hiện tượng gì xảy ra."
+    ],
+    correctAnswer: 0,
+    explanation: "$Cl_2$ phản ứng với nước tạo ra $HCl$ (làm quỳ hóa đỏ) và $HClO$ (có tính tẩy màu mạnh làm quỳ mất màu).",
+    simulationType: "litmus-bleach"
+  },
+  {
+    id: 42,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Cho dung dịch $H_2SO_4$ loãng vào ống nghiệm chứa dung dịch $Na_2S_2O_3$. Hiện tượng quan sát được là",
+    options: [
+      "Dung dịch vẫn trong suốt.",
+      "Xuất hiện kết tủa màu đen.",
+      "Dung dịch dần trở nên đục do sự xuất hiện của lưu huỳnh ($S$).",
+      "Có bọt khí không mùi thoát ra."
+    ],
+    correctAnswer: 2,
+    explanation: "Phản ứng: $Na_2S_2O_3 + H_2SO_4 \\rightarrow Na_2SO_4 + S\\downarrow + SO_2 + H_2O$. Lưu huỳnh tạo ra ở dạng huyền phù làm dung dịch bị đục.",
+    simulationType: "precipitate-cloudy"
+  },
+  {
+    id: 43,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Nhỏ vài giọt dung dịch Iodine vào lát cắt củ khoai lang sống. Hiện tượng quan sát được là",
+    options: [
+      "Lát cắt khoai lang chuyển sang màu đỏ.",
+      "Lát cắt khoai lang chuyển sang màu xanh tím.",
+      "Lát cắt khoai lang không đổi màu.",
+      "Lát cắt khoai lang bị đen lại."
+    ],
+    correctAnswer: 1,
+    explanation: "Iodine là thuốc thử đặc trưng để nhận biết tinh bột, tạo ra phức chất có màu xanh tím.",
+    simulationType: "starch-iodine"
+  },
+  {
+    id: 44,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Đưa một mẩu giấy quỳ tím ẩm vào miệng ống nghiệm đựng khí $HCl$. Hiện tượng quan sát được là",
+    options: [
+      "Quỳ tím chuyển sang màu đỏ.",
+      "Quỳ tím chuyển sang màu xanh.",
+      "Quỳ tím bị tẩy trắng.",
+      "Quỳ tím không đổi màu."
+    ],
+    correctAnswer: 0,
+    explanation: "Khí $HCl$ tan vào nước trong quỳ tím ẩm tạo thành dung dịch acid mạnh làm quỳ tím hóa đỏ.",
+    simulationType: "litmus-red"
+  },
+  {
+    id: 45,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Trong thí nghiệm điều chế khí $Cl_2$ từ $MnO_2$ và $HCl$ đặc, khí $Cl_2$ thoát ra thường lẫn tạp chất là khí $HCl$ và hơi nước. Để thu được $Cl_2$ khô, người ta dẫn hỗn hợp khí lần lượt qua các bình đựng",
+    options: [
+      "Dung dịch $NaCl$ và dung dịch $H_2SO_4$ đặc.",
+      "Dung dịch $NaOH$ và dung dịch $H_2SO_4$ đặc.",
+      "Dung dịch $AgNO_3$ và dung dịch $H_2SO_4$ đặc.",
+      "Nước vôi trong và dung dịch $H_2SO_4$ đặc."
+    ],
+    correctAnswer: 0,
+    explanation: "Dùng dung dịch $NaCl$ để giữ lại khí $HCl$ (ít làm tan $Cl_2$) và dùng $H_2SO_4$ đặc để hút hơi nước.",
+    simulationType: "gas-evolution"
+  },
+  {
+    id: 46,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Cho một miếng đồng ($Cu$) vào ống nghiệm chứa dung dịch $H_2SO_4$ đặc, nóng. Hiện tượng nào sau đây **không** đúng?",
+    options: [
+      "Có sủi bọt khí không màu, mùi hắc.",
+      "Dung dịch chuyển dần sang màu xanh.",
+      "Miếng đồng tan dần.",
+      "Có khí không màu, không mùi thoát ra."
+    ],
+    correctAnswer: 3,
+    explanation: "Phản ứng tạo ra khí $SO_2$ (mùi hắc) và dung dịch $CuSO_4$ (màu xanh). Không có khí không mùi ($H_2$) thoát ra do $H_2SO_4$ đặc có tính oxi hóa mạnh.",
+    simulationType: "solution-color-change"
+  },
+  {
+    id: 47,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Khi cho vài tinh thể $KMnO_4$ vào ống nghiệm chứa dung dịch $HCl$ đặc, hiện tượng quan sát được là",
+    options: [
+      "Có khí màu vàng lục, mùi hắc thoát ra.",
+      "Dung dịch chuyển sang màu xanh lục.",
+      "Có khí không màu thoát ra.",
+      "Có kết tủa đen xuất hiện."
+    ],
+    correctAnswer: 0,
+    explanation: "Phản ứng giải phóng khí Chlorine ($Cl_2$) có màu vàng lục.",
+    simulationType: "gas-evolution"
+  },
+  {
+    id: 48,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Trong thí nghiệm về tốc độ phản ứng, khi thêm bột $MnO_2$ vào ống nghiệm đựng dung dịch $H_2O_2$, thấy bọt khí thoát ra rất mạnh. Vai trò của $MnO_2$ là",
+    options: [
+      "Chất tham gia phản ứng.",
+      "Chất xúc tác.",
+      "Chất môi trường.",
+      "Chất oxi hóa."
+    ],
+    correctAnswer: 1,
+    explanation: "$MnO_2$ đóng vai trò chất xúc tác làm tăng tốc độ phân hủy $H_2O_2$ thành $H_2O$ và $O_2$.",
+    simulationType: "gas-evolution"
+  },
+  {
+    id: 49,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Cho vài giọt dung dịch $AgNO_3$ vào ống nghiệm chứa dung dịch $NaBr$. Hiện tượng quan sát được là",
+    options: [
+      "Có kết tủa trắng.",
+      "Có kết tủa màu vàng nhạt.",
+      "Có kết tủa màu vàng đậm.",
+      "Không có hiện tượng gì."
+    ],
+    correctAnswer: 1,
+    explanation: "$AgNO_3 + NaBr \\rightarrow AgBr\\downarrow (vàng \\ nhạt) + NaNO_3$.",
+    simulationType: "precipitate-yellow"
+  },
+  {
+    id: 50,
+    section: "THÍ NGHIỆM VÀ HIỆN TƯỢNG",
+    text: "Dẫn khí $HCl$ vào bình đựng amonia ($NH_3$) đặc. Hiện tượng xảy ra là",
+    options: [
+      "Có hiện tượng 'khói trắng' xuất hiện.",
+      "Có dung dịch màu xanh tạo thành.",
+      "Có kết tủa màu vàng xuất hiện.",
+      "Không có hiện tượng gì."
+    ],
+    correctAnswer: 0,
+    explanation: "Khí $HCl$ và $NH_3$ gặp nhau tạo thành những hạt muối $NH_4Cl$ rắn nhỏ li ti lơ lửng như khói trắng.",
+    simulationType: "smoke-evolution"
   }
 ];
